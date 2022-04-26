@@ -7,7 +7,10 @@ export const ApplicationViews = () => {
   return (
     <>
       <h1 >Welcome to Rare Publishing</h1>
-      <Route path="/posts" exact>
+      <Route exact path="/posts" >
+        <PostList />
+      </Route>
+      <Route exact path="/posts/:postId(\d+)" >
         <PostList />
       </Route>
     </>
