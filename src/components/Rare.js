@@ -7,11 +7,17 @@ import { Register } from "./auth/Register"
 
 export const Rare = () => {
   const [token, setTokenState] = useState(localStorage.getItem('token'))
+  const [post, setPost] = useState({})
+  const [categories, setCategories] = useState([])
 
   const setToken = (newToken) => {
     localStorage.setItem('token', newToken)
     setTokenState(newToken)
   }
+
+  // const getAllCategories = () => {
+  //   getCategories().then(categoryData => setCategories(categoryData))
+  // }
 
   return <>
     {
@@ -24,7 +30,6 @@ export const Rare = () => {
         :
         <Redirect to="/login" />
     }
-
     <Route exact path="/login" >
       <NavBar token={token} setToken={setToken} />
       <Login token={token} setToken={setToken} />
@@ -34,6 +39,5 @@ export const Rare = () => {
       <NavBar token={token} setToken={setToken} />
       <Register token={token} setToken={setToken} />
     </Route>
-
   </>
 }
