@@ -3,6 +3,7 @@ import { Route } from "react-router-dom"
 import { CategoryList } from "./Categories/CategoryList"
 
 import { PostList } from "./Posts/PostLIst"
+import { TagList } from "./Tags/TagList"
 
 export const ApplicationViews = () => {
   return (
@@ -14,6 +15,8 @@ export const ApplicationViews = () => {
       <Route exact path="/posts/:postId(\d+)" >
         <PostList />
       </Route>
+      <Route exact path="/tags" >
+        <TagList />
       <Route exact path="/categories" >
         <CategoryList />
       </Route>
