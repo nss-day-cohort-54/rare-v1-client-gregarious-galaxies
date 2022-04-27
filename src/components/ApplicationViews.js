@@ -18,10 +18,17 @@ export const ApplicationViews = () => {
       </Route>
       <Route exact path="/tags" >
         <TagList />
-        <Route exact path="/categories" >
-          <CategoryList />
-        </Route>
-      </>
-      )
+      </Route>
+      <Route exact path="/categories" >
+        <CategoryList />
+      </Route>
+      <Route exact path="/tags" >
+        <TagList />
+      </Route>
+      <Route exact path="/categories" >
+        <CategoryList />
+      </Route>
+    </>
+  )
 
 }
