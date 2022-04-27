@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getCategories } from "./CategoryManager";
+import { AddCategory } from "./NewCategory";
 
 
 export const CategoryList = () => {
@@ -29,6 +30,7 @@ export const CategoryList = () => {
                     </div>
                 })
             }
+            <AddCategory categories={categories}/>
         </>
     )
 };

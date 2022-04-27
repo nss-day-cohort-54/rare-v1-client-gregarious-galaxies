@@ -2,7 +2,6 @@ import React from "react"
 import { Route } from "react-router-dom"
 import { PostDetails } from "./Posts/PostDetails"
 import { CategoryList } from "./Categories/CategoryList"
-
 import { PostList } from "./Posts/PostLIst"
 import { TagList } from "./Tags/TagList"
 
