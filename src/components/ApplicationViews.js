@@ -15,13 +15,17 @@ export const ApplicationViews = () => {
       <Route exact path="/posts/:postId(\d+)" >
         <PostList />
       </Route>
-<<<<<<< HEAD
       <Route exact path="/tags" >
         <TagList />
-=======
+      </Route>
       <Route exact path="/categories" >
         <CategoryList />
->>>>>>> main
+      </Route>
+      <Route exact path="/tags" >
+        <TagList />
+      </Route>
+      <Route exact path="/categories" >
+        <CategoryList />
       </Route>
     </>
   )
