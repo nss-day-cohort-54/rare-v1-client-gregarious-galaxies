@@ -22,12 +22,6 @@ export const ApplicationViews = () => {
       <Route exact path="/categories" >
         <CategoryList />
       </Route>
-      <Route exact path="/tags" >
-        <TagList />
-      </Route>
-      <Route exact path="/categories" >
-        <CategoryList />
-      </Route>
     </>
   )
 

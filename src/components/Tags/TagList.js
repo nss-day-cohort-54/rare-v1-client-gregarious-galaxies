@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { AddTag } from "./TagForm";
 import { getTagById, getTags } from "./TagManager";
 
 export const TagList = () => {
@@ -17,11 +18,12 @@ export const TagList = () => {
         <>
         {
             tags.map(tag => {
-                return <div className="tagListItem">
+                return <div key={tag.id} className="tagListItem">
                     <li>{tag.label} <button>Edit</button><button>Delete</button></li>
                 </div>
             })
         }
+        <AddTag tags={tags}/>
         </>
     )
 }
