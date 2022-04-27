@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getPosts } from "./PostManager";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { getMyPosts, getPosts } from "./PostManager";
 
-export const PostList = () => {
+export const MyPostList = () => {
 
-    const [posts, setPosts] = useState([])
+    const [myPosts, setMyPosts] = useState([])
+    const {userId} = useParams()
 
     useEffect(() => {
-        getPosts().then(postData => setPosts(postData))
+        getMyPosts(userId).then(postData => setMyPosts(postData))
     },
-        []
-        //only runs on initial load
+        [userId]
     )
 
     return (
         <>
             {
-                posts.map(post => {
+                myPosts.map(post => {
+
                     return <div className="panel-block" key={post.id}>
                         <article className='aPost'>
                             <div className="message-body">
@@ -31,3 +33,14 @@ export const PostList = () => {
         </>
     )
 };
+
+// {
+//     token
+//       ?
+//       <Route>
+//         <NavBar token={token} setToken={setToken} />
+//         <ApplicationViews />
+//       </Route>
+//       :
+//       <Redirect to="/login" />
+//   }
