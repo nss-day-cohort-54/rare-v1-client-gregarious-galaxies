@@ -39,7 +39,7 @@ export const AddTag=() => {
                         } />
                 </div>
                 <div>
-                <button id="btn" className="btn btn-addTag" onClick={addNewTag} >
+                <button id="btn" className="btn-addTag" onClick={addNewTag} >
                     Submit Tag
                 </button>
             </div>

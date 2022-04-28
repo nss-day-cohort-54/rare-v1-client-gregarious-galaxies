@@ -1,0 +1,11 @@
+.userInfo{
+    border: 1px solid black;
+    padding: 5px;
+    margin: 5px;
+}
+
+.userName{
+    font-size: 20px;
+    font-style: bold;
+}
+
