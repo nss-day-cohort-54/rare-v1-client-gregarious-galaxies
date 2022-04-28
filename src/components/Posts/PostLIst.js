@@ -21,7 +21,7 @@ export const PostList = () => {
                     return <div className="panel-block" key={post.id}>
                         <article className='aPost'>
                             <div className="message-body">
-                                <Link to={`posts/${post.id}`} className="post__title">{post.title}</Link>
+                                <Link to={`posts/details/${post.id}`} className="post__title">{post.title}</Link>
                                 <p className="post__name">{post.user?.first_name} {post.user?.last_name}</p>
                                 <p className="post__category">{post.category?.label}</p>
                             </div>
