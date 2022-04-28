@@ -17,6 +17,7 @@ export const CategoryList = () => {
 
     return (
         <>
+        <h3>Categories</h3>
             {
                 categories.map(category => {
                     return <div className="panel-block" key={category.id}>
