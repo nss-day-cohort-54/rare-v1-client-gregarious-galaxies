@@ -1,11 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Post } from "./Post";
-import { getPosts } from "./PostManager";
+import { getPosts, searchPosts } from "./PostManager";
 
 export const PostList = () => {
 
     const [posts, setPosts] = useState([])
+    const [query, setQuery] = useState("");
+
+
+    let filteredPosts = posts.filter(post => {
+        if (query === '') {
+            return post
+        } else if (post.title.toLowerCase().includes(query.toLowerCase())) {
+            return post
+        }
+    })
+
+
+
 
     useEffect(() => {
         getPosts().then(postData => setPosts(postData))
@@ -15,9 +28,34 @@ export const PostList = () => {
     )
 
     return (
+
+
+
         <>
+
+
+
+
+            <div className="panel-block">
+                <p className="control has-icons-left">
+                    <input className="input is-primary" type="text" placeholder="Search" onKeyUp={
+                        (event) => {
+
+                            const query = event.target.value
+                            setQuery(query)
+                        }
+                    } />
+                </p>
+            </div>
+
+
+
+
+
+
             {
-                posts.map(post => {
+
+                filteredPosts.map(post => {
                     return <div className="panel-block" key={post.id}>
                         <article className='aPost'>
                             <div className="message-body">
