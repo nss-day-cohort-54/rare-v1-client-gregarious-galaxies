@@ -4,11 +4,8 @@ import { PostDetails } from "./Posts/PostDetails"
 import { CategoryList } from "./Categories/CategoryList"
 import { PostList } from "./Posts/PostLIst"
 import { TagList } from "./Tags/TagList"
-<<<<<<< HEAD
 import { MyPostList } from "./Posts/MyPosts"
-=======
 import { UserList } from "./Users/UserList"
->>>>>>> main
 
 export const ApplicationViews = () => {
   return (
