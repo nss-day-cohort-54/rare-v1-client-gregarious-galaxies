@@ -1,18 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { getMyPosts, getPosts } from "./PostManager";
+import { getPosts } from "./PostManager";
 
 export const MyPostList = () => {
-
-    const [myPosts, setMyPosts] = useState([])
-    const {userId} = useParams()
-
+    const [posts, setPosts] = useState([])
+    // const [myPosts, setMyPosts] = useState([])
+    // const {currentUserId} = useParams()
+    let currentUserId = parseInt(localStorage.getItem("token"))
+    
     useEffect(() => {
-        getMyPosts(userId).then(postData => setMyPosts(postData))
+        getPosts().then(postData => setPosts(postData))
     },
-        [userId]
+        []
     )
+
+    // useEffect(() => {
+    //     getMyPosts().then(postData => setMyPosts(postData))
+    // },
+    //     [userId]
+    // )
+
+    const myPosts = posts.filter(post => post.user_id === currentUserId)
 
     return (
         <>
