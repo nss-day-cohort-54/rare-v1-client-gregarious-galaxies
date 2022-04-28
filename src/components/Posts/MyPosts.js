@@ -5,8 +5,6 @@ import { getPosts } from "./PostManager";
 
 export const MyPostList = () => {
     const [posts, setPosts] = useState([])
-    // const [myPosts, setMyPosts] = useState([])
-    // const {currentUserId} = useParams()
     let currentUserId = parseInt(localStorage.getItem("token"))
     
     useEffect(() => {
@@ -14,13 +12,7 @@ export const MyPostList = () => {
     },
         []
     )
-
-    // useEffect(() => {
-    //     getMyPosts().then(postData => setMyPosts(postData))
-    // },
-    //     [userId]
-    // )
-
+    
     const myPosts = posts.filter(post => post.user_id === currentUserId)
 
     return (
@@ -42,14 +34,3 @@ export const MyPostList = () => {
         </>
     )
 };
-
-// {
-//     token
-//       ?
-//       <Route>
-//         <NavBar token={token} setToken={setToken} />
-//         <ApplicationViews />
-//       </Route>
-//       :
-//       <Redirect to="/login" />
-//   }
