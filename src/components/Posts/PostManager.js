@@ -34,3 +34,7 @@ export const updatePost = post => {
     })
 };
 
+export const getMyPosts = (userId) => {
+    return fetch(`http://localhost:8088/posts/${userId}`)
+        .then(res => res.json())
+};
