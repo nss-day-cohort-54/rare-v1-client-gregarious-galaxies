@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { getPosts } from "./PostManager";
 
-export const PostList = () => {
-
+export const MyPostList = () => {
     const [posts, setPosts] = useState([])
-
+    let currentUserId = parseInt(localStorage.getItem("token"))
+    
     useEffect(() => {
         getPosts().then(postData => setPosts(postData))
     },
         []
-        //only runs on initial load
     )
+    
+    const myPosts = posts.filter(post => post.user_id === currentUserId)
 
     return (
         <>
             {
-                posts.map(post => {
+                myPosts.map(post => {
+
                     return <div className="panel-block" key={post.id}>
                         <article className='aPost'>
                             <div className="message-body">
