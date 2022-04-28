@@ -1,62 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Post } from "./Post";
-import { getPosts, searchPosts } from "./PostManager";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { getPosts } from "./PostManager";
 
-
-export const PostList = () => {
-
+export const MyPostList = () => {
     const [posts, setPosts] = useState([])
-    const [query, setQuery] = useState("");
-
-
-    let filteredPosts = posts.filter(post => {
-        if (query === '') {
-            return post
-        } else if (post.title.toLowerCase().includes(query.toLowerCase())) {
-            return post
-        }
-    })
-
-
-
-
+    let currentUserId = parseInt(localStorage.getItem("token"))
+    
     useEffect(() => {
         getPosts().then(postData => setPosts(postData))
     },
         []
-        //only runs on initial load
     )
+    
+    const myPosts = posts.filter(post => post.user_id === currentUserId)
 
     return (
-
-
-
         <>
-
-
-
-
-            <div className="panel-block">
-                <p className="control has-icons-left">
-                    <input className="input is-primary" type="text" placeholder="Search" onKeyUp={
-                        (event) => {
-
-                            const query = event.target.value
-                            setQuery(query)
-                        }
-                    } />
-                </p>
-            </div>
-
-
-
-
-
-
             {
+                myPosts.map(post => {
 
-                filteredPosts.map(post => {
                     return <div className="panel-block" key={post.id}>
                         <article className='aPost'>
                             <div className="message-body">
