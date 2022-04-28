@@ -1,0 +1,10 @@
+.tagItem, .Form__title, .form-control, .btn-addTag{
+    margin-left: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.btn-tagList{
+   margin-right: 5px; 
+}
+

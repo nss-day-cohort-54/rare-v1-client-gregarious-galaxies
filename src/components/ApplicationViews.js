@@ -4,6 +4,7 @@ import { PostDetails } from "./Posts/PostDetails"
 import { CategoryList } from "./Categories/CategoryList"
 import { PostList } from "./Posts/PostLIst"
 import { TagList } from "./Tags/TagList"
+import { UserList } from "./Users/UserList"
 
 export const ApplicationViews = () => {
   return (
@@ -20,6 +21,9 @@ export const ApplicationViews = () => {
       </Route>
       <Route exact path="/categories" >
         <CategoryList />
+      </Route>
+      <Route exact path="/users" >
+        <UserList />
       </Route>
     </>
   )
