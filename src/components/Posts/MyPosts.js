@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { deletePost, getPosts } from "./PostManager";
 
 export const MyPostList = () => {
@@ -15,9 +14,10 @@ export const MyPostList = () => {
 
     const myPosts = posts.filter(post => post.user_id === currentUserId)
 
-    //define a function to delete a blog post
-    //invoke the DELETE method from ApiManager and then fetch the new list of posts
+    //define a function to delete a post
+    //invoke the DELETE method from PostManager and then fetch the new list of posts
     const removePost = (id) => {
+
         deletePost(id)
             .then(()=> {
                 getPosts()
@@ -41,7 +41,7 @@ export const MyPostList = () => {
                             </div>
                         </article >
                         <div>
-                            <button id="btn" className="btn-addTag" onClick={removePost} >
+                            <button id="btn" className="btn-addTag" onClick={() => {window.confirm('Are you sure you wish to delete this item?') ? removePost(post.id)("confirm") : ("cancel")}}>
                                 Delete Post
                             </button>
                         </div>
