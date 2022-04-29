@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { getTags } from "../Tags/TagManager";
+import { useHistory, useParams } from "react-router-dom";
+import { getComments } from "../../Comment/CommentManager";
 import { getPostById } from "./PostManager";
+import "./Post.css"
 
 export const PostDetails = () => {
 
     const [post, setPost] = useState({})
     const [tags, setTags] = useState([])
+    const [comments, setComments] = useState([])
+    
+    const history = useHistory()
 
     const { postId } = useParams()
 
@@ -23,6 +28,19 @@ export const PostDetails = () => {
         })
     }, [])
 
+    useEffect(()=>{
+        getComments()
+        .then(commentData =>{
+            setComments(commentData)
+        })
+    },[])
+
+    const filteredComments = comments.filter(comment => {
+        if (comment.post_id === post.id){
+            return comment
+        }
+    })
+
 
     return (
         <>
@@ -36,7 +54,25 @@ export const PostDetails = () => {
                     <p className="post__content">{post.content}</p>
                    
                 </div>
+                <button onClick={() => history.push(`/posts/details/${postId}/comment`)}>Add Comment</button>
             </article >
+            <article>
+                <div className="comments">
+                    <h2 className ="commentHeader">Comments...</h2>
+                    <div>
+                        {
+                            filteredComments.map(comment=>{
+                                return <>
+                                <div key={comment.id} className="userComments">
+                                    <p>{comment.username}</p>
+                                    <p>{comment.content}</p>
+                                </div>
+                                </>
+                            })
+                        }
+                    </div>
+                </div>
+            </article>
         </>
     )
 
