@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { getComments } from "../../Comment/CommentManager";
 import { getPostById } from "./PostManager";
+import "./Post.css"
 
 export const PostDetails = () => {
 
@@ -26,6 +27,12 @@ export const PostDetails = () => {
         })
     },[])
 
+    const filteredComments = comments.filter(comment => {
+        if (comment.post_id === post.id){
+            return comment
+        }
+    })
+
 
     return (
         <>
@@ -38,12 +45,23 @@ export const PostDetails = () => {
                     <img className="post__img" src={post.image_url} />
                     <p className="post__content">{post.content}</p>
                 </div>
-                <button onClick={() => history.push(`/posts/details/comment/${postId}`)}>Add Comment</button>
+                <button onClick={() => history.push(`/posts/details/${postId}/comment`)}>Add Comment</button>
             </article >
             <article>
                 <div className="comments">
-                    <h2>Comments...</h2>
-                    <div></div>
+                    <h2 className ="commentHeader">Comments...</h2>
+                    <div>
+                        {
+                            filteredComments.map(comment=>{
+                                return <>
+                                <div key={comment.id} className="userComments">
+                                    <p>{comment.username}</p>
+                                    <p>{comment.content}</p>
+                                </div>
+                                </>
+                            })
+                        }
+                    </div>
                 </div>
             </article>
         </>
