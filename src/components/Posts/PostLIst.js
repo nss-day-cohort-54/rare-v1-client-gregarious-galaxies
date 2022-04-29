@@ -63,6 +63,9 @@ export const PostList = () => {
                                 <Link to={`posts/details/${post.id}`} className="post__title">{post.title}</Link>
                                 <p className="post__name">{post.user?.first_name} {post.user?.last_name}</p>
                                 <p className="post__category">{post.category?.label}</p>
+                                {
+                    post.tags?.map(tag => <p className="post__tag">{tag.label}</p>)
+                    }
                             </div>
                         </article >
                     </div>
