@@ -5,6 +5,7 @@ import { CategoryList } from "./Categories/CategoryList"
 import { PostList } from "./Posts/PostLIst"
 import { TagList } from "./Tags/TagList"
 import { UserList } from "./Users/UserList"
+import { AddComment } from "../Comment/CommentForm"
 
 export const ApplicationViews = () => {
   return (
@@ -24,6 +25,9 @@ export const ApplicationViews = () => {
       </Route>
       <Route exact path="/users" >
         <UserList />
+      </Route>
+      <Route exact path="/posts/details/comment/postId(\+d)" >
+        <AddComment />
       </Route>
     </>
   )
