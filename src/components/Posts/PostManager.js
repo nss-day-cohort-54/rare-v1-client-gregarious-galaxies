@@ -25,8 +25,8 @@ export const addPost = post => {
     })
 };
 
-export const deletePost = postId => {
-    return fetch(`http://localhost:8088/post/${postId}`, {
+export const deletePost = (id) => {
+    return fetch(`http://localhost:8088/posts/${id}`, {
         method: "DELETE"
     })
 };

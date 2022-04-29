@@ -1,0 +1,10 @@
+.userComments{
+    border: 2px pink solid;
+    margin: 5px;
+    padding: 5px;
+}
+
+.commentHeader{
+    font-size: 18px;
+    margin: 5px;
+}
