@@ -2,19 +2,23 @@ import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { useHistory } from "react-router-dom"
 import { getCategories } from "../Categories/CategoryManager"
+import { getTags, postTag } from "../Tags/TagManager"
 import { addPost } from "./PostManager"
 
 export const PostForm = () => {
-    const [categories, setCategories] = useState([])
     const history = useHistory()
+    const [categories, setCategories] = useState([])
+    const [tags, setTags] = useState([]) // state to fetch tags for list visual
     const [post, setPost] = useState({
         user_id: 1, // TODO: change to actual user Id
         category_id: 0,
         title: "",
         publication_date: Date.now(),
         image_url: "",
-        content:""
+        content:"",
+        approved: 1
     })
+    const [tagIds, setTagIds] = useState([])// state management for the TagIds
 
 
     // CREATE TABLE "Posts" (
@@ -37,6 +41,13 @@ export const PostForm = () => {
             })
     }
         , [])
+    useEffect(() => {
+        getTags()
+            .then((TagsFromApi) => {
+                setTags(TagsFromApi)
+            })
+    }
+        , [])
     const handleControlledInputChange = (event) => {
         /*
             When changing a state object or array, always create a new one
@@ -47,6 +58,15 @@ export const PostForm = () => {
         setPost(newPost)
         // moking a copy
     }
+    const handleCheckboxChange = (event) => {
+        /*
+            When changing a state object or array, always create a new one
+            and change state instead of modifying current one
+        */
+        let tagsCopy = [...tagIds]
+        tagsCopy.push(parseInt(event.target.id))
+        setTagIds(tagsCopy)
+    }
 
     // creating the obj to send into the API and Post
     const SubmitNewPost = () => {
@@ -56,6 +76,7 @@ export const PostForm = () => {
         if (!copyPost.publication_date) {
             copyPost.publication_date = Date(Date.now()).toLocaleString('en-us').split('GMT')[0]
         }
+        copyPost.tags = tagIds
         addPost(copyPost)
         .then( ()=> history.push("/posts"))
     }
@@ -121,6 +142,22 @@ export const PostForm = () => {
                         />
                     </div>
                 </div>
+                <div className="field">
+                        <label htmlFor="tagId" className="label">Tags: </label>
+                        {tags.map(tag => (
+                            <div className="control">
+                                <input
+                                    id={tag.id}
+                                    proptype="int"
+                                    type="checkbox"
+                                    className="custom-control-input"
+                                    value={post.tagIds}
+                                    onChange={handleCheckboxChange}
+                                /><label key={tag.id} htmlFor="tagName" className="label">{tag.label}</label>
+                            </div>
+                        ))}
+
+                    </div>
                 <div className="field">
                         <div className="control">
                             <button type="submit"
